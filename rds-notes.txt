@@ -1,0 +1,24 @@
+Hi All,
+
+Connecting RDS DB through proxy using token from Lambda is working now!!!
+
+I had made below changes for incident API lambda...
+
+
+
+incident API template.yaml changes:
+
+- Modified delegate-admin-fll-ReportBugFunction-Policy to add following:
+
+
+
+Effect: Allow
+
+Action:
+- rds-db:connect
+Resource:
+- arn:aws:rds-db:us-east-1:962689519170:dbuser:prx-06cd44128e1465626/*
+
+RDS-Proxy changes:
+- Enabled "Transport Layer Security"
+- Enabled "IAM Authentication"
